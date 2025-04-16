@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Spam Email Classifier</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <div class="container">
+    <h1>📧 Spam Email Classifier</h1>
+    <form action="{{ url_for('predict') }}" method="post" enctype="multipart/form-data">
+      <label for="email">Email Text :</label>
+      <textarea name="email" id="email" placeholder="Paste your email content here..."></textarea>
+
+      <div class="separator"><span>OR</span></div>
+      
+      <label for="image">Upload Email Image :</label>
+      <input type="file" name="image" id="image" accept="image/*" title="Upload an image containing email text">
+
+      <button type="submit">Predict</button>
+    </form>
+
+    {% if prediction_text %}
+      <div class="result">{{ prediction_text }}</div>
+    {% endif %}
+  </div>
+</body>
+</html>
